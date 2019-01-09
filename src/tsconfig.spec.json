@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "../out-tsc/spec",
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": true
+  },
+  "include": [
+    "**/*.spec.ts",
+    "src/**/*.spec.mock.ts",
+    "src/**/*.spec.data.ts"
+  ],
+  "compileOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

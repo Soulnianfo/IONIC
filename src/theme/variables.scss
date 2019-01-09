@@ -1,0 +1,126 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+:root {
+  --ion-color-primary: #0064a0;
+  --ion-color-primary-rgb: 0, 100, 160;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #00588d;
+  --ion-color-primary-tint: #1a74aa;
+
+  --ion-color-secondary: #00abc4;
+  --ion-color-secondary-rgb: 0, 171, 196;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #0096ac;
+  --ion-color-secondary-tint: #1ab3ca;
+
+  --ion-color-tertiary: #7044ff;
+  --ion-color-tertiary-rgb: 112, 68, 255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #633ce0;
+  --ion-color-tertiary-tint: #7e57ff;
+
+  --ion-color-success: #b1cb2d;
+  --ion-color-success-rgb: 177, 203, 45;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0, 0, 0;
+  --ion-color-success-shade: #9cb328;
+  --ion-color-success-tint: #b9d042;
+
+  --ion-color-warning: #ffcc00;
+  --ion-color-warning-rgb: 255, 204, 0;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0b400;
+  --ion-color-warning-tint: #ffd11a;
+
+  --ion-color-danger: #e10b40;
+  --ion-color-danger-rgb: 225, 11, 64;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #c60a38;
+  --ion-color-danger-tint: #e42353;
+
+  --ion-color-dark: #222222;
+  --ion-color-dark-rgb: 34, 34, 34;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e1e1e;
+  --ion-color-dark-tint: #383838;
+
+  --ion-color-medium: #f2f2f2;
+  --ion-color-medium-rgb: 242, 242, 242;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0, 0, 0;
+  --ion-color-medium-shade: #d5d5d5;
+  --ion-color-medium-tint: #f3f3f3;
+
+  --ion-color-light: #ffffff;
+  --ion-color-light-rgb: 255, 255, 255;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #e0e0e0;
+  --ion-color-light-tint: #ffffff;
+
+  --ion-color-text-dark: #2f3234;
+  --ion-color-text-dark-rgb: 47, 50, 52;
+  --ion-color-text-dark-contrast: #ffffff;
+  --ion-color-text-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-text-dark-shade: #292c2e;
+  --ion-color-text-dark-tint: #444748;
+
+  --ion-color-text: #4c4c4c;
+  --ion-color-text-rgb: 76, 76, 76;
+  --ion-color-text-contrast: #ffffff;
+  --ion-color-text-contrast-rgb: 255, 255, 255;
+  --ion-color-text-shade: #434343;
+  --ion-color-text-tint: #5e5e5e;
+
+  /**
+    breakpoint
+  */
+  --ion-grid-width-xs: 0;
+  --ion-grid-width-sm: 576px;
+  --ion-grid-width-md: 768px;
+  --ion-grid-width-lg: 992px;
+  --ion-grid-width-xl: 1400px;
+
+  /**
+    Globals
+  */
+  // https://beta.ionicframework.com/docs/theming/advanced/#globals
+  --ion-font-family: "Lato", sans-serif;
+  --ion-background-color: var(--ion-color-medium);
+
+  /**
+    Surcharge ionic Component
+  */
+  --ion-safe-area-left: 0;
+  --ion-safe-area-right: 0;
+
+  --ion-text-color: var(--ion-color-text);
+
+  // Variables globales pour le style des inputs.
+  // Permet d'avoir un style commun pour tous les composants de type Input
+  --input-padding-top: 8px;
+  --input-padding-right: 6px;
+  --input-padding-bottom: 8px;
+  --input-padding-left: 8px;
+  --input-padding: var(--input-padding-top) var(--input-padding-right) var(--input-padding-bottom) var(--input-padding-left);
+
+  --input-border-color: #b2b2b2;
+  --input-border-color-hover: #666a6a;
+  --input-border-width: 1px;
+  --input-border-style: solid;
+
+  --input-background: none;
+
+  --input-color: var(--ion-color-text);
+  --input-font-size: 12px;
+  --input-font-family: var(--ion-font-family);
+  --input-placeholder-color: #999;
+}
