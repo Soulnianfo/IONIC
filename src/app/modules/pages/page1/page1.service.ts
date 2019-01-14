@@ -13,7 +13,6 @@ export class Page1Service {
     return this.httpclient.get("https://jsonplaceholder.typicode.com/posts");
   }
 
-
   persistArticles(articles){
     return this.storage.set("articles", articles);
   }

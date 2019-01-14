@@ -7,6 +7,14 @@
     <h4>Bienvenue sur la page 1</h4>
   </section>
 
+  <h1 *ngIf="toShow">
+    Je dois m'afficher
+  </h1>
+
+  <h1 *ngIf="!toShow">
+    Je ne dois pas m'afficher
+  </h1>
+
   <div *ngFor="let article of articles">
     <h3>{{article.title}}</h3>
     <p>{{article.body}}</p>

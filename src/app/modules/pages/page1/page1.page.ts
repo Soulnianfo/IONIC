@@ -12,7 +12,11 @@ export class Page1Page implements OnInit {
 
   public articles: Array<any>;
 
-  constructor(public page1Service: Page1Service) {}
+  public toShow: boolean;
+
+  constructor(public page1Service: Page1Service) {
+    this.toShow = true;
+  }
 
   ngOnInit() {
     console.log("INIT PAGE1");
