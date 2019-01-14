@@ -5,4 +5,11 @@
 <ion-content>
   <section >
     <h4>Bienvenue sur la page 1</h4>
-  </section></ion-content>
+  </section>
+
+  <div *ngFor="let article of articles">
+    <h3>{{article.title}}</h3>
+    <p>{{article.body}}</p>
+    <br />
+  </div>
+</ion-content>
