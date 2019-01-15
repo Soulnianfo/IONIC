@@ -6,7 +6,7 @@ import {of} from "rxjs";
 import {TestUtil} from "../../../test/util.test";
 
 
-describe('Service: List Service', () => {
+describe('Service: Page Service', () => {
   let service: Page1Service;
   let httpClient: HttpClient = createMockInstance(HttpClient);
   let storage: Storage = createMockInstance(Storage);
