@@ -7,6 +7,7 @@ export class Page1Service {
 
 
   constructor(public httpclient: HttpClient, public storage: Storage) {
+
   }
 
   getArticles(){
