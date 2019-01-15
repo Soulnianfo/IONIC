@@ -22,5 +22,9 @@ export class MainPage implements OnInit {
   goToPage1(){
     this.router.navigateByUrl("page1");
   }
+
+  validateName(name: string){
+    console.log(name);
+  }
 }
 

@@ -8,4 +8,11 @@
     <h4>Bienvenue sur la main page {{identifiant}}</h4>
   </section>
   <ion-button (click)="goToPage1()">Aller à la page 1</ion-button>
+
+  <section >
+    <ion-item>
+      <ion-input type="text" placeholder="Name" #name></ion-input>
+    </ion-item>
+    <ion-button (click)="validateName(name.value)">Valider prénom</ion-button>
+  </section>
 </ion-content>
