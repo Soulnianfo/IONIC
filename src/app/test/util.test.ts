@@ -10,6 +10,13 @@ export class TestUtil {
 
     return {provide: service, useClass: MockedClass};
   }
+
+  public static promise(returnedValue?) {
+    return new Promise((resolve) => {
+      resolve(returnedValue);
+    });
+  }
+
 }
 
 @Injectable()
