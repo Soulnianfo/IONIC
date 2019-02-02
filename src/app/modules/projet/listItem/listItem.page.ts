@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ListItemService } from "./listItem.service";
-
+import { Router } from "@angular/router";
 @Component({
   selector: 'listItem',
   templateUrl: './listItem.page.html',
@@ -12,8 +12,9 @@ export class ListItemPage implements OnInit {
 
   public articles: Array<any>;
   public indexDB: Array<any>;
+  public text: string;
 
-  constructor(public service: ListItemService) { }
+  constructor(public service: ListItemService, public router: Router) { }
 
   ngOnInit() {
     console.log("INIT PAGE1");
@@ -34,47 +35,51 @@ export class ListItemPage implements OnInit {
       (data: Array<any>) => {
         console.log("okkkkk!!!!");
         for (let article = 0; article < 10; article++) {
-          articlesTempo.push(data[article])
+          let temp = { article: data[article], valide: false };
+          articlesTempo.push(temp);
+         // articlesTempo.push(data[article]);
           console.log("listItem " + article);
         }
         this.articles = articlesTempo;
       }
     );
 
-   
-    
-
   }
 
   delete(id) {
-    this.service.delete(id);
-    //this.listItem();
+    
+    let i;
+    for (i in this.articles) {
+
+      if (this.articles[i].article.id == id) {
+        this.articles[i].valide = false;
+        this.service.delete(id);
+        console.log("suppression ");
+        i = this.articles.length;
+      }
+    }
+
     this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
+    this.router.navigateByUrl("listItem");
   }
 
   add(id) {
     let i;
     for (i in this.articles) {
-
-      if (this.articles[i].id == id) {
+     
+      if (this.articles[i].article.id == id) {
+        this.articles[i].valide = true;
+        console.log("valide ");
         this.service.add(this.articles[i]);
         i = this.articles.length;
       }
     }
-    //this.listItem();
     this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
+    this.router.navigateByUrl("listItem");
   }
-  check(id) {
-   
-
-    for (let i in this.indexDB) {
-     
-      if (id == this.indexDB[i].id) {
-        return true;
-      }
-    }
-
-    return false;
+  loadIndexDB() {
+    this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.articles = response });
+    this.router.navigateByUrl("listItem");
   }
 }
 

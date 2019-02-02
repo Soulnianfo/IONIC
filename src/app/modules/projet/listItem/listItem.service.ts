@@ -18,7 +18,7 @@ export class ListItemService {
    this.storage.get("articles").then((response: Array<any>) => {
      
      for (let index in response) {
-       if (response[index].id == id) {
+       if (response[index].article.id == id) {
          response.splice(Number(index), 1);
          this.storage.set("articles", response)
        }
@@ -31,7 +31,6 @@ export class ListItemService {
 
   add(article) {
     this.storage.get("articles").then((response: Array<any>) => {
-     
      response.push(article);
      this.storage.set("articles", response)
     })
