@@ -1,0 +1,19 @@
+﻿<ion-header>
+    <ion-toolbar>
+        <span>Page login</span>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <section>
+        <h4>Bienvenue sur la page login</h4>
+    </section>
+
+    <section>
+        <ion-item>
+            <ion-input type="text" placeholder="Identifiant" #username></ion-input>
+        </ion-item>
+        <ion-button (click)="login(username.value)">Login in</ion-button>
+    </section>
+
+
+</ion-content>

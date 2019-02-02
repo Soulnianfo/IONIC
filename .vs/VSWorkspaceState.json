@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\modules",
+    "\\src\\app\\modules\\main",
+    "\\src\\app\\modules\\pages",
+    "\\src\\app\\modules\\pages\\page1",
+    "\\src\\app\\modules\\projet",
+    "\\src\\app\\modules\\projet\\listItem",
+    "\\src\\app\\modules\\projet\\login",
+    "\\src\\app\\routing"
+  ],
+  "SelectedNode": "\\src\\app\\routing\\app-routing.module.ts",
+  "PreviewInSolutionExplorer": false
+}

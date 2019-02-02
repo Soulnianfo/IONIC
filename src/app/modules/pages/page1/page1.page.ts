@@ -12,24 +12,22 @@ export class Page1Page implements OnInit {
 
   public articles: Array<any>;
 
-  public toShow: boolean;
-
-  constructor(public page1Service: Page1Service) {
-    this.toShow = true;
-  }
+  constructor(public page1Service: Page1Service) {}
 
   ngOnInit() {
     console.log("INIT PAGE1");
 
     this.page1Service.getArticles().subscribe(
+    //this.page1Service.persistArticles().then(
       (data: Array<any>) => {
-        this.articles = data;
-
-        this.page1Service.persistArticles(data).then(
-          ok => {
-            console.log("Les articles ont bien été stockés");
-          }
-        );
+       // this.articles = data;
+        //localStorage.setItem("articles", JSON.stringify(data));
+        this.articles = JSON.parse(localStorage.getItem("articles"));
+        //this.page1Service.persistArticles(data).then(
+        //  ok => {
+         //   console.log("Les articles ont bien été stockés");
+         // }
+        //);
       }
     );
   }
