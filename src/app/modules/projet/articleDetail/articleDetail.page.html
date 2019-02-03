@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <span>detail article</span>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section>
+    <h4>Bienvenue sur la page de détail de l'article</h4>
+  </section>
+  <div *ngIf="article!=null">
+    <h4>{{article.title}}</h4>
+    <p>{{article.body}}</p>
+  </div>
+
+</ion-content>

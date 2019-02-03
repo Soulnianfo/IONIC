@@ -7,24 +7,23 @@
   <section>
     <h4>Bienvenue sur la page des articles</h4>
   </section>
-  <ion-button (click)="textA()">A</ion-button>
-  <ion-button (click)="textB()">B</ion-button>
-  {{text}}
-  <!--<div *ngFor="let article of articles">
-    <ion-item>
-      <ion-label>{{article.title}}</ion-label>
-      <div *ngIf="check(article.id)==true; else ajout">
-        <ion-button (click)="delete(article.id)">Supprimer</ion-button>
-      </div>
-      <ng-template #ajout>
-        <ion-button (click)="add(article.id)">Ajouter</ion-button>
-      </ng-template>
-    </ion-item>
-    <br />
-
-  </div>-->
   
-    <div *ngFor="let article of articles">
+  <div *ngIf="articles!=null; else loadIndexBD">
+    <div *ngFor="let article of articles" (click)="detail(article.article)">
+      <ion-item >
+        <ion-label>{{article.article.title}}</ion-label>
+        <div *ngIf="article.valide==true; else ajout">
+          <ion-button (click)="delete(article.article.id)">Supprimer</ion-button>
+        </div>
+        <ng-template #ajout>
+          <ion-button (click)="add(article.article.id)">Ajouter</ion-button>
+        </ng-template>
+      </ion-item>
+      <br />
+    </div>
+  </div>
+  <ng-template #loadIndexBD>
+    <div *ngFor="let article of indexDB" (click)="detail(article.article)">
       <ion-item>
         <ion-label>{{article.article.title}}</ion-label>
         <div *ngIf="article.valide==true; else ajout">
@@ -36,5 +35,6 @@
       </ion-item>
       <br />
     </div>
- 
+  </ng-template>
+
 </ion-content>

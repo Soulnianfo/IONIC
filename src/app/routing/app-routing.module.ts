@@ -19,7 +19,12 @@ const defaultsRoutes: Routes = [
   {
     path: 'listItem',
     loadChildren: '../modules/projet/listItem/listItem.page.module#ListItemPageModule'
-  }
+  },
+  {
+    path: 'articleDetail',
+    loadChildren: '../modules/projet/articleDetail/articleDetail.page.module#articleDetailModule'
+  },
+
 
 ];
 
