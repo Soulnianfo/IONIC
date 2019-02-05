@@ -25,6 +25,8 @@ export class ListItemPage implements OnInit {
     this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
   }
 
+ 
+
   listItem() {
     let articlesTempo = [];
    
@@ -45,6 +47,7 @@ export class ListItemPage implements OnInit {
     );
 
   }
+
 
   delete(id) {
     
@@ -77,10 +80,11 @@ export class ListItemPage implements OnInit {
     this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
     this.router.navigateByUrl("listItem");
   }
+
   detail(article) {
 
     this.articleService.setArticle(article);
-      this.router.navigateByUrl("articleDetail");
+    this.router.navigateByUrl("articleDetail");
     
   }
   

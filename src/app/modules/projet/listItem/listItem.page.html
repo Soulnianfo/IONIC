@@ -1,40 +1,103 @@
-<ion-header>
-  <ion-toolbar>
-    <span>Liste des articles</span>
-  </ion-toolbar>
+<ion-header style=" background-color: rgb(143, 8, 8)">
+    <div text-center >
+        <h1 style=" color: white"> Bienvenue dans la page des articles </h1>
+       </div>
 </ion-header>
 <ion-content>
-  <section>
-    <h4>Bienvenue sur la page des articles</h4>
-  </section>
+
   
   <div *ngIf="articles!=null; else loadIndexBD">
-    <div *ngFor="let article of articles" (click)="detail(article.article)">
-      <ion-item >
-        <ion-label>{{article.article.title}}</ion-label>
-        <div *ngIf="article.valide==true; else ajout">
-          <ion-button (click)="delete(article.article.id)">Supprimer</ion-button>
-        </div>
-        <ng-template #ajout>
-          <ion-button (click)="add(article.article.id)">Ajouter</ion-button>
-        </ng-template>
-      </ion-item>
-      <br />
-    </div>
+      <ion-grid style="margin:auto; width:90%">
+   
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label style="font-weight: bold">Titre</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col size-sm="2">
+              <ion-item >
+                <ion-label style="font-weight: bold">Etat</ion-label>
+              </ion-item>
+           </ion-col>
+           <ion-col size-sm="2">
+              <ion-item >
+                <ion-label style="font-weight: bold">Détails</ion-label>
+              </ion-item>
+           </ion-col>
+          </ion-row>
+
+       <div *ngFor="let article of articles" >
+          <ion-row>
+              <ion-col>
+                  <ion-item >
+                    <ion-label>{{article.article.title}}</ion-label>
+                  </ion-item> 
+              </ion-col>
+              <ion-col size-sm="2">
+                  <ion-item >
+                  <div *ngIf="article.valide==true; else ajout">
+                    <ion-button (click)="delete(article.article.id)">Supprimer</ion-button>
+                  </div>
+                  <ng-template #ajout>
+                    <ion-button (click)="add(article.article.id)">Ajouter</ion-button>
+                  </ng-template>
+                </ion-item>
+              </ion-col>
+              <ion-col size-sm="2">
+                  <ion-item > 
+                      <ion-button (click)="detail(article.article)">Détails</ion-button>
+                  </ion-item >   
+              </ion-col> 
+            </ion-row>
+         </div>
+    </ion-grid>
   </div>
   <ng-template #loadIndexBD>
-    <div *ngFor="let article of indexDB" (click)="detail(article.article)">
-      <ion-item>
-        <ion-label>{{article.article.title}}</ion-label>
-        <div *ngIf="article.valide==true; else ajout">
-          <ion-button (click)="delete(article.article.id)">Supprimer</ion-button>
-        </div>
-        <ng-template #ajout>
-          <ion-button (click)="add(article.article.id)">Ajouter</ion-button>
-        </ng-template>
-      </ion-item>
-      <br />
-    </div>
+      <ion-grid style="margin:auto; width:90%">
+        
+          <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label style="font-weight: bold">Titre</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size-sm="2">
+                <ion-item >
+                  <ion-label style="font-weight: bold">Etat</ion-label>
+                </ion-item>
+              </ion-col> 
+              <ion-col size-sm="2">
+                  <ion-item >
+                    <ion-label style="font-weight: bold">Détails</ion-label>
+                  </ion-item>
+                </ion-col> 
+            </ion-row>
+                  <div *ngFor="let article of indexDB" >
+                      <ion-row>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label>{{article.article.title}}</ion-label>
+                                  </ion-item>
+                                </ion-col>
+                                <ion-col size-sm="2">
+                                    <ion-item > 
+                                        <div *ngIf="article.valide==true; else ajout">
+                                            <ion-button (click)="delete(article.article.id)">Supprimer</ion-button>
+                                        </div>
+                                          <ng-template #ajout>
+                                            <ion-button (click)="add(article.article.id)">Ajouter</ion-button>
+                                          </ng-template>
+                                    </ion-item >   
+                                </ion-col> 
+                                <ion-col size-sm="2">
+                                    <ion-item > 
+                                        <ion-button (click)="detail(article.article)">Détails</ion-button>
+                                    </ion-item >   
+                                </ion-col> 
+                    </ion-row>
+                  </div>
+          </ion-grid>
   </ng-template>
 
 </ion-content>

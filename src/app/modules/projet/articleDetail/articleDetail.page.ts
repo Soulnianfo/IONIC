@@ -20,4 +20,8 @@ export class articleDetailPage implements OnInit {
     this.service.getArticle().then((response: object) => { this.article = response });;
    
   }
+
+  retourListItem(){
+    this.router.navigateByUrl("listItem");
+  }
 }

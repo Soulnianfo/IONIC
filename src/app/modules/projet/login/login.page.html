@@ -1,19 +1,31 @@
-﻿<ion-header>
-    <ion-toolbar>
-        <span>Page login</span>
-    </ion-toolbar>
+﻿<ion-header style=" background-color: rgb(143, 8, 8)">
+    
+       <div text-center >
+        <h1 style=" color: white"> Bienvenue dans la page de connexion </h1>
+     </div>
+  
 </ion-header>
-<ion-content>
-    <section>
-        <h4>Bienvenue sur la page login</h4>
-    </section>
+<ion-content style="background-color:  burlywood">
 
-    <section>
-        <ion-item>
-            <ion-input type="text" placeholder="Identifiant" #username></ion-input>
-        </ion-item>
-        <ion-button (click)="login(username.value)">Login in</ion-button>
-    </section>
-
-
+    <ion-grid >
+        <ion-row>
+        
+          <ion-col>
+            <div  style="margin:auto; margin-top: 10% ; width:50% ; border: 1.5px solid  rgb(143, 8, 8) ;padding: 10px" >
+                <div text-center>
+                     <h3 style=" color: black" >Se connecter</h3>
+                </div>
+              <ion-item>
+                  <ion-label floating style=" color: black">Username : </ion-label>
+                  <ion-input type="text" value="" #username></ion-input>
+                </ion-item>
+                <div text-center>
+                    <ion-button color="dark" block (click)="login(username.value)">Connecter</ion-button>
+                </div>
+      
+            </div>
+          </ion-col>
+        </ion-row>
+       
+      </ion-grid>
 </ion-content>
