@@ -10,33 +10,66 @@ import { Router } from "@angular/router";
   providers: [ListItemService , ArticleDetailService]
 })
 export class ListItemPage implements OnInit {
-
+ 
+  public Allarticles: Array<any>;
   public articles: Array<any>;
   public indexDB: Array<any>;
+  public indexDBTMP: Array<any>;
   public text: string;
   public articleDetail: Object;
+  erreur: string ="PasConnexion";
+   pageCourante: number =1;
+   indexElement: number =0;
+   elementAfficher: number =10;
+
+   pageCouranteBD: number =1;
+   indexElementBD: number =0;
+   elementAfficherBD: number =10;
 
   constructor(public service: ListItemService, public router: Router, public articleService: ArticleDetailService) { }
-
   ngOnInit() {
     console.log("INIT PAGE1");
+    console.log("2 : pageCourante, indexElement,elementAfficher "+this.pageCourante+","+this.indexElement+","+this.elementAfficher);
     
+
     this.listItem();
-    this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
+    this.listIdexBD();
   }
 
- 
+listIdexBD(){
+  let AllarticlesDB =[];
+  this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDBTMP = response;
+    if(this.indexDBTMP.length < this.elementAfficherBD)
+      this.elementAfficherBD = this.indexDBTMP.length;
+    
+    for (let elementBD = this.indexElementBD; elementBD< this.elementAfficherBD; elementBD++) {
+    console.log("INDEX BD : "+response[elementBD].article.id);
+    console.log("INDEX BD 1: "+response[elementBD].valide);
+   
+    AllarticlesDB.push(response[elementBD])
+    }
+   this.indexDB = AllarticlesDB;
+   console.log("INDEX BD 2: "+this.indexDB);
+
+  });
+}
 
   listItem() {
     let articlesTempo = [];
+
+    console.log("3 : pageCourante, indexElement,elementAfficher "+this.pageCourante+","+this.indexElement+","+this.elementAfficher);
+    try {
+      
    
     this.service.getArticles().subscribe(
       (data: Array<any>) => {
+       this.erreur = "Connexion";
+        console.log("articles : "+this.Allarticles); 
         this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
-        for (let article = 0; article < 10; article++) {
+        for (let article = this.indexElement; article < this.elementAfficher; article++) {
           let temp = { article: data[article], valide: false };
           for (let index in this.indexDB) {
-            
+           
             if (this.indexDB[index].article.id == temp.article.id) { temp.valide = true; }
           }
           articlesTempo.push(temp);
@@ -45,20 +78,75 @@ export class ListItemPage implements OnInit {
         this.articles = articlesTempo;
       }
     );
+  } catch (error) {
+      this.erreur="true"
+  }
+  }
+  next(){
+    this.pageCourante+=1;
+    this.indexElement = this.elementAfficher;
+    this.elementAfficher += 10;
+    this.listItem();	
+    this.router.navigateByUrl("listItem");	   
+ }
+
+ before(){
+	this.pageCourante-=1;
+	this.indexElement = this.indexElement - 10;
+	this.elementAfficher = this.elementAfficher -10;
+	this.listItem();  
+	this.router.navigateByUrl("listItem");	
+  }
+
+  nextINDEXBD(){
+    this.pageCouranteBD+=1;
+    this.indexElementBD = this.elementAfficherBD;
+    this.elementAfficherBD +=10;
+    this.listIdexBD();
+    this.router.navigateByUrl("listItem");	
+  }
+
+  beforeINDEXBD(){
+    this.pageCouranteBD-=1;
+    this.indexElementBD = this.indexElementBD - 10;
+    this.elementAfficherBD = this.elementAfficherBD -10;
+    this.listIdexBD();
+    this.router.navigateByUrl("listItem");
 
   }
 
 
   delete(id) {
-    
+    console.log(" 0 suppression ");
+    console.log(" id "+id);
     let i;
     for (i in this.articles) {
-
+      console.log(" id 1"+id);
       if (this.articles[i].article.id == id) {
+        console.log(" id 2"+this.articles[i].article.id);
         this.articles[i].valide = false;
         this.service.delete(id);
         console.log("suppression ");
         i = this.articles.length;
+      }
+    }
+
+    this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
+    this.router.navigateByUrl("listItem");
+  }
+
+  deleteFromIndexBD(id) {
+    console.log(" 0 suppression ");
+    console.log(" id "+id);
+    let i;
+    for (i in this.indexDB) {
+      console.log(" id 1"+id);
+      if (this.indexDB[i].article.id == id) {
+      //  console.log(" id 2"+this.articles[i].article.id);
+        this.indexDB[i].valide = false;
+        this.service.delete(id);
+        console.log("suppression ");
+        i = this.indexDB.length;
       }
     }
 
