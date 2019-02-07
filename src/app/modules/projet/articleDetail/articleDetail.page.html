@@ -1,18 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <span>detail article</span>
-  </ion-toolbar>
-</ion-header>
+<ion-header style=" background-color: rgb(143, 8, 8)">
+    <div text-center >
+        <h1 style=" color: white"> Page de Détail </h1>
+       </div>
+       
+
+  </ion-header>
 <ion-content>
-  <section>
-    <h4>Bienvenue sur la page de détail de l'article</h4>
-  </section>
-   
-  <div *ngIf="article!=null">
-    <h4>{{article.title}}</h4>
-    <p>{{article.body}}</p>
-  </div>
-     <div>
-      <ion-button (click)="retourListItem()">Retour</ion-button>
+    <div style="margin:auto; margin-top: 2% ;margin-bottom: 2% ; width:9% ; border: 1.5px solid  black;padding: 10px;   display: flex;"  >
+        <ion-label style="font-weight: bold; ">Article  </ion-label>  
+        <ion-label style="font-weight: bold;margin-left: 3% "> {{article.id}} </ion-label>
     </div>
+  <div style="margin:auto; margin-left: 5% ; margin-right: 5% ; height: 50%; border: 1.5px solid  black;padding: 10px;  ">
+   
+    <h2 style="font-weight: bold; text-align: center; text-decoration: underline;" >{{article.title}}</h2>
+    <p>{{article.body}}</p>
+
+    
+  </div>
+  <div style="margin:auto; margin-top: 2% ;margin-bottom: 2% ; width:9% ; padding: 10px;   display: flex;"  >
+      <ion-button (click)="retourListItem()">Retour</ion-button>
+  </div>
 </ion-content>

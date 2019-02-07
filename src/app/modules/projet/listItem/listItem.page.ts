@@ -11,13 +11,15 @@ import { Router } from "@angular/router";
 })
 export class ListItemPage implements OnInit {
  
+  public AllarticlesDB: Array<any>;
   public Allarticles: Array<any>;
   public articles: Array<any>;
   public indexDB: Array<any>;
   public indexDBTMP: Array<any>;
   public text: string;
   public articleDetail: Object;
-  erreur: string ="PasConnexion";
+ 
+   erreur: boolean =false;
    pageCourante: number =1;
    indexElement: number =0;
    elementAfficher: number =10;
@@ -26,8 +28,14 @@ export class ListItemPage implements OnInit {
    indexElementBD: number =0;
    elementAfficherBD: number =10;
 
+    pageSuivanteBD: number =1;
+	pagePrcedenteBD: number =0;
+	size: number ;
+	
+	
+	
   constructor(public service: ListItemService, public router: Router, public articleService: ArticleDetailService) { }
-  ngOnInit() {
+    ngOnInit() {
     console.log("INIT PAGE1");
     console.log("2 : pageCourante, indexElement,elementAfficher "+this.pageCourante+","+this.indexElement+","+this.elementAfficher);
     
@@ -35,7 +43,7 @@ export class ListItemPage implements OnInit {
     this.listItem();
     this.listIdexBD();
   }
-
+/* Ancien
 listIdexBD(){
   let AllarticlesDB =[];
   this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDBTMP = response;
@@ -49,22 +57,90 @@ listIdexBD(){
     AllarticlesDB.push(response[elementBD])
     }
    this.indexDB = AllarticlesDB;
-   console.log("INDEX BD 2: "+this.indexDB);
+  
 
   });
 }
+*/
+
+
+changePage(){
+	let articlesTempo = [];
+	for (let article = this.indexElement; article < this.elementAfficher; article++) {
+          let temp = { article: this.Allarticles[article], valide: false };
+          for (let index in this.indexDB) {
+           
+            if (this.indexDB[index].article.id == temp.article.id) { temp.valide = true; }
+          }
+          articlesTempo.push(temp);
+         // console.log("listItem " + article);
+        }
+		this.articles = articlesTempo;	
+}
+
+changePageDB(){
+	let AllarticlesDBTMP =[];
+  this.size = this.AllarticlesDB.length;
+  if(this.size < this.elementAfficherBD)
+{
+  this.elementAfficherBD = this.size;
+  this.pageSuivanteBD =1;
+}
+else{
+  this.pageSuivanteBD+=1;
+  
+}
+for (let elementBD = this.indexElementBD; elementBD< this.elementAfficherBD; elementBD++) {
+  //console.log("INDEX BD : "+response[elementBD].article.id);
+  //console.log("INDEX BD 1: "+response[elementBD].valide);
+ 
+  AllarticlesDBTMP.push(this.AllarticlesDB[elementBD])
+  }
+ this.indexDB = AllarticlesDBTMP;
+ console.log("la taille du INDEX DB : "+this.indexDB.length);
+}
+
+
+
+//Nouveau
+listIdexBD(){
+  let AllarticlesDB =[];
+ 
+  this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDBTMP = response;
+	this.size = this.indexDBTMP.length;
+    if(this.size < this.elementAfficherBD)
+	{
+		this.elementAfficherBD = this.size;
+		this.pageSuivanteBD =1;
+	}
+	else{
+		this.pageSuivanteBD+=1;
+		
+	}
+		 
+    for (let elementBD = this.indexElementBD; elementBD< this.elementAfficherBD; elementBD++) {
+    console.log("INDEX BD : "+response[elementBD].article.id);
+    console.log("INDEX BD 1: "+response[elementBD].valide);
+   
+    AllarticlesDB.push(response[elementBD])
+    }
+   this.indexDB = AllarticlesDB;
+   this.AllarticlesDB = this.indexDBTMP;
+  
+  });
+}
+
+
 
   listItem() {
     let articlesTempo = [];
 
     console.log("3 : pageCourante, indexElement,elementAfficher "+this.pageCourante+","+this.indexElement+","+this.elementAfficher);
-    try {
-      
    
     this.service.getArticles().subscribe(
       (data: Array<any>) => {
-       this.erreur = "Connexion";
-        console.log("articles : "+this.Allarticles); 
+      
+	   
         this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
         for (let article = this.indexElement; article < this.elementAfficher; article++) {
           let temp = { article: data[article], valide: false };
@@ -76,17 +152,18 @@ listIdexBD(){
          // console.log("listItem " + article);
         }
         this.articles = articlesTempo;
+        this.Allarticles = data;
+        this.erreur = true;
       }
     );
-  } catch (error) {
-      this.erreur="true"
-  }
+  
   }
   next(){
     this.pageCourante+=1;
     this.indexElement = this.elementAfficher;
     this.elementAfficher += 10;
-    this.listItem();	
+   // this.listItem();	
+  	this.changePage()
     this.router.navigateByUrl("listItem");	   
  }
 
@@ -94,7 +171,8 @@ listIdexBD(){
 	this.pageCourante-=1;
 	this.indexElement = this.indexElement - 10;
 	this.elementAfficher = this.elementAfficher -10;
-	this.listItem();  
+	//this.listItem();  
+	this.changePage();
 	this.router.navigateByUrl("listItem");	
   }
 
@@ -109,7 +187,7 @@ listIdexBD(){
   beforeINDEXBD(){
     this.pageCouranteBD-=1;
     this.indexElementBD = this.indexElementBD - 10;
-    this.elementAfficherBD = this.elementAfficherBD -10;
+    this.elementAfficherBD = this.indexElementBD + 10;
     this.listIdexBD();
     this.router.navigateByUrl("listItem");
 
@@ -135,6 +213,7 @@ listIdexBD(){
     this.router.navigateByUrl("listItem");
   }
 
+  
   deleteFromIndexBD(id) {
     console.log(" 0 suppression ");
     console.log(" id "+id);
@@ -150,7 +229,12 @@ listIdexBD(){
       }
     }
 
-    this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
+    this.service.getArticlesInIndexBD().then((response: Array<any>) => {
+       this.indexDB = response ;
+       this.AllarticlesDB= this.indexDB
+      });
+     // this.changePageDB();
+     this.listIdexBD();
     this.router.navigateByUrl("listItem");
   }
 
@@ -177,4 +261,3 @@ listIdexBD(){
   }
   
 }
-
