@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   public username: string;
   constructor(public service: LoginService, public router: Router) { }
 
+
   ngOnInit() {
     console.log("INIT PAGE1");
     
@@ -23,7 +24,19 @@ export class LoginPage implements OnInit {
   login(username: string) {
     this.service.persistUsername(username);
     this.service.setArticles();
-    this.router.navigateByUrl("/listItem")
+    this.username = this.service.getusername();
+    if(this.username == null) {
+         this.router.navigateByUrl("/login")
+    }
+    else{
+      this.GoToListItemPage();
+    }
+   
+    
+  }
+
+  GoToListItemPage() {
+    this.router.navigateByUrl("listItem")
     
   }
 }

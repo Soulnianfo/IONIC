@@ -1,6 +1,6 @@
-<ion-header style=" background-color: rgb(143, 8, 8)">
+<ion-header >
   <div text-center >
-      <h1 style=" color: white"> Bienvenue dans la page des articles </h1>
+      <h1 id="titre1"> Bienvenue dans la page des articles </h1>
      </div>
 </ion-header>
 <ion-content>
@@ -8,40 +8,40 @@
 
 
 <div *ngIf="articles!=null; else loadIndexBD">
-  <div style="margin:auto; margin-top: 2% ;margin-bottom: 2% ; width:7% ; border: 1.5px solid  black;padding: 10px;   display: flex;" >
+  <div  id="Page">
     
-       <ion-label style="font-weight: bold;">Page </ion-label>
+       <ion-label id="fontPage">Page </ion-label>
        
-        <ion-label style="font-weight: bold;margin-left: 3% "> {{pageCourante}} </ion-label>
+        <ion-label id="fontPageCourante"> {{pageCourante}} </ion-label>
       
  </div>  
-  <div style="margin:auto; margin-top: 2% ;margin-bottom: 2% ; width:15% ; border: 1.5px solid  black;padding: 10px;   display: flex;" >
-        <div style="margin:auto">
-           <ion-label style="font-weight: bold;">Pagination </ion-label>
+  <div id="pagination" >
+        <div id="MarginAuto">
+           <ion-label id="fontPage">Pagination </ion-label>
          </div>
-     <div *ngIf="pageCourante >= 2 " style=" margin-left: 5%" >
+     <div id="IfMargin" *ngIf="pageCourante >= 2 " >
             <ion-button (click)="before()"> < </ion-button>
           </div>
       <div *ngIf="pageCourante <= 9">
             <ion-button (click)="next()"> > </ion-button>
           </div>
      </div>	
-    <ion-grid style="margin:auto; width:90%">
+    <ion-grid >
  
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label style="font-weight: bold">Titre</ion-label>
+              <ion-label id="fontPage">Titre</ion-label>
             </ion-item>
           </ion-col>
           <ion-col size-sm="2">
             <ion-item >
-              <ion-label style="font-weight: bold">Etat</ion-label>
+              <ion-label id="fontPage">Etat</ion-label>
             </ion-item>
          </ion-col>
          <ion-col size-sm="2">
             <ion-item >
-              <ion-label style="font-weight: bold">Détails</ion-label>
+              <ion-label id="fontPage">Détails</ion-label>
             </ion-item>
          </ion-col>
         </ion-row>
@@ -71,11 +71,11 @@
           </ion-row>
        </div>
   </ion-grid>
-  <div style="margin:auto; margin-top: 2% ;margin-bottom: 5% ; width:15% ; border: 1.5px solid  black;padding: 10px;   display: flex;" >
-       <div style="margin:auto">
-          <ion-label style="font-weight: bold;">Pagination </ion-label>
+  <div id="pagination" >
+    <div id="MarginAuto">
+          <ion-label id="fontPage">Pagination </ion-label>
         </div>
-    <div *ngIf="pageCourante >= 2 " style=" margin-left: 5%" >
+    <div *ngIf="pageCourante >= 2 " id="IfMargin" >
            <ion-button (click)="before()"> < </ion-button>
          </div>
      <div *ngIf="pageCourante <= 9">
@@ -84,36 +84,36 @@
     </div>	
 </div>
 <ng-template #loadIndexBD>
-    <div  style="margin:auto; margin-top: 2% ;margin-bottom: 2% ; width:55% ; border: 1.5px solid  black; padding: 4px;   display: flex;">
-        <h1 style=" color: red" > Pas de connexion (les articles sont récuperé depuis l'index BD) </h1>
+    <div id="connexion" >
+        <h1 id="indexDBH1" > Pas de connexion (les articles sont récuperé depuis l'index DB) </h1>
     </div>
-  <div style="margin:auto; margin-top: 2% ;margin-bottom: 2% ; width:15% ; border: 1.5px solid  black;padding: 10px;   display: flex;" >
-      <div style="margin:auto">
+    <div id="pagination"  >
+      <div id="MarginAuto">
           <ion-label style="font-weight: bold;">Pagination </ion-label>
       </div>
-      <div *ngIf="pageCouranteBD > 1 " style=" margin-left: 5%" >
+      <div *ngIf="pageCouranteBD > 1 " id="IfMargin" >
         <ion-button (click)="beforeINDEXBD()"> < </ion-button>
       </div>
-      <div *ngIf="pageSuivanteBD > 1">
+      <div *ngIf="indexDB.length >= 10">
         <ion-button (click)="nextINDEXBD()"> > </ion-button>
       </div>
   </div>	
-    <ion-grid style="margin:auto; width:90%">
+    <ion-grid >
       
         <ion-row>
             <ion-col>
               <ion-item>
-                <ion-label style="font-weight: bold">Titre</ion-label>
+                <ion-label id="fontPage">Titre</ion-label>
               </ion-item>
             </ion-col>
             <ion-col size-sm="2">
               <ion-item >
-                <ion-label style="font-weight: bold">Etat</ion-label>
+                <ion-label id="fontPage">Etat</ion-label>
               </ion-item>
             </ion-col> 
             <ion-col size-sm="2">
                 <ion-item >
-                  <ion-label style="font-weight: bold">Détails</ion-label>
+                  <ion-label id="fontPage">Détails</ion-label>
                 </ion-item>
               </ion-col> 
           </ion-row>
@@ -140,14 +140,14 @@
                   </ion-row>
                 </div>
         </ion-grid>	
-  <div  style="margin:auto; margin-top: 2% ;margin-bottom: 5% ; width:15% ; border: 1.5px solid  black;padding: 10px;   display: flex;"  >
-      <div style="margin:auto">
-        <ion-label style="font-weight: bold;" >Pagination </ion-label>
+  <div id="pagination"  >
+      <div id="MarginAuto">
+        <ion-label id="fontPage" >Pagination </ion-label>
       </div>
-      <div *ngIf="pageCouranteBD > 1 " style=" margin-left: 5%" >
+      <div *ngIf="pageCouranteBD > 1 " id="IfMargin" >
         <ion-button (click)="beforeINDEXBD()"> < </ion-button>
       </div>
-      <div *ngIf="pageSuivanteBD > 1">
+      <div *ngIf="indexDB.length >= 10">
         <ion-button (click)="nextINDEXBD()"> > </ion-button>
       </div>
   </div>	

@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'listItem',
   templateUrl: './listItem.page.html',
-  //styleUrls: ['./login.page.scss'],
+  styleUrls: ['./listItem.page.scss'],
   host: { 'class': 'listItem' },
   providers: [ListItemService , ArticleDetailService]
 })
@@ -107,9 +107,13 @@ listIdexBD(){
   let AllarticlesDB =[];
  
   this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDBTMP = response;
-	this.size = this.indexDBTMP.length;
+  this.size = this.indexDBTMP.length;
+  console.log("la taille de index bd "+this.size);
+  console.log("la taille de elementAfficherBD "+this.elementAfficherBD);
+
     if(this.size < this.elementAfficherBD)
 	{
+    console.log("");
 		this.elementAfficherBD = this.size;
 		this.pageSuivanteBD =1;
 	}
@@ -119,8 +123,6 @@ listIdexBD(){
 	}
 		 
     for (let elementBD = this.indexElementBD; elementBD< this.elementAfficherBD; elementBD++) {
-    console.log("INDEX BD : "+response[elementBD].article.id);
-    console.log("INDEX BD 1: "+response[elementBD].valide);
    
     AllarticlesDB.push(response[elementBD])
     }
@@ -135,7 +137,7 @@ listIdexBD(){
   listItem() {
     let articlesTempo = [];
 
-    console.log("3 : pageCourante, indexElement,elementAfficher "+this.pageCourante+","+this.indexElement+","+this.elementAfficher);
+    console.log(" passagae par listItem ");
    
     this.service.getArticles().subscribe(
       (data: Array<any>) => {
@@ -219,14 +221,17 @@ listIdexBD(){
     console.log(" id "+id);
     let i;
     for (i in this.indexDB) {
-      console.log(" id 1"+id);
+      console.log(" id 1 "+id);
       if (this.indexDB[i].article.id == id) {
       //  console.log(" id 2"+this.articles[i].article.id);
         this.indexDB[i].valide = false;
-        this.service.delete(id);
+       this.service.delete(id);
         console.log("suppression ");
         i = this.indexDB.length;
       }
+      console.log(" 0 pageCouranteDB "+this.pageCourante);
+      console.log(" 0 pageSuivantDB "+this.pageSuivanteBD);
+
     }
 
     this.service.getArticlesInIndexBD().then((response: Array<any>) => {
@@ -236,6 +241,9 @@ listIdexBD(){
      // this.changePageDB();
      this.listIdexBD();
     this.router.navigateByUrl("listItem");
+
+    console.log(" 1 pageCouranteDB "+this.pageCourante);
+    console.log(" 1 pageSuivantDB "+this.pageSuivanteBD);
   }
 
   add(id) {
@@ -256,8 +264,12 @@ listIdexBD(){
   detail(article) {
 
     this.articleService.setArticle(article);
-    this.router.navigateByUrl("articleDetail");
+    this.goToPageDetails();
     
   }
   
+
+  goToPageDetails(){
+    this.router.navigateByUrl("articleDetail");
+  }
 }

@@ -1,0 +1,52 @@
+ion-header{
+    background-color: rgb(143, 8, 8);
+}
+
+#article {
+    margin:auto;
+    margin-left: 45% ;
+    margin-right: 45% ;
+    margin-top:2%;
+    height: 10%;
+    border: 1.5px solid  black;
+    padding: 10px; 
+}
+
+#articleFont {
+    font-weight: bold; 
+}
+
+#articleId {
+    font-weight: bold;
+    margin-left: 3% ;
+}
+
+#body {
+    margin:auto;
+    margin-top:4%;
+    margin-left: 5% ; 
+    margin-right: 5% ; 
+    height: 50%; 
+    border: 1.5px solid  black;
+    padding: 10px; 
+}
+
+
+#articleTitre {
+    font-weight: bold; 
+    text-align: center; 
+    text-decoration: underline;
+}
+
+#retourBoutton {
+    margin:auto; 
+    margin-top: 2% ;
+    margin-bottom: 2% ; 
+    width:9% ; 
+    padding: 10px;   
+    display: flex; 
+}
+
+#titre1 {
+    color:white;
+}
