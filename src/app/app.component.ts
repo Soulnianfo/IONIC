@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginService } from "./modules/projet/login/login.service";
 import { Router } from "@angular/router";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { Router } from "@angular/router";
 })
 export class AppComponent implements OnInit {
   public username: string;
-  constructor(public service: LoginService, public router: Router) {
+  constructor(public service: LoginService, public router: Router, public storage: Storage) {
 
   }
 
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
     if (this.username == null) {
       this.router.navigateByUrl("/login")
     } else {
+      
       this.router.navigateByUrl("/listItem")
     }
   }

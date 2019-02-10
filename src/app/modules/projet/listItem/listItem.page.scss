@@ -1,0 +1,37 @@
+.page-listItem-head{
+  background-color: blue ;
+}
+.currentPage {
+  margin: auto;
+  margin-top: 2%;
+  width: 30%;
+  text-align: center;
+  padding: 10px;
+  
+}
+.pagination{
+  margin-left: 7%;
+}
+.pagination > .pagination-button {
+  width: auto;
+  display: inline-flex;
+  margin-right: 5px;
+}
+.article > .article-propriete {
+  display: table-cell;
+}
+.article {
+  width: auto;
+  border-bottom: 1px solid;
+}
+.article > .label{
+  width: 70%;
+}
+.article > .add-suppr{
+  width: 11%;
+}
+.article > .detail {
+  width: 11%;
+}
+
+

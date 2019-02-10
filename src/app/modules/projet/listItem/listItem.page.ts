@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'listItem',
   templateUrl: './listItem.page.html',
-  //styleUrls: ['./login.page.scss'],
+  styleUrls: ['./listItem.page.scss'],
   host: { 'class': 'listItem' },
   providers: [ListItemService , ArticleDetailService]
 })
@@ -34,35 +34,16 @@ export class ListItemPage implements OnInit {
 	
 	
 	
-  constructor(public service: ListItemService, public router: Router, public articleService: ArticleDetailService) { }
+    constructor(public service: ListItemService, public router: Router, public articleService: ArticleDetailService) {
+      
+    }
     ngOnInit() {
     console.log("INIT PAGE1");
-    console.log("2 : pageCourante, indexElement,elementAfficher "+this.pageCourante+","+this.indexElement+","+this.elementAfficher);
-    
+
 
     this.listItem();
     this.listIdexBD();
   }
-/* Ancien
-listIdexBD(){
-  let AllarticlesDB =[];
-  this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDBTMP = response;
-    if(this.indexDBTMP.length < this.elementAfficherBD)
-      this.elementAfficherBD = this.indexDBTMP.length;
-    
-    for (let elementBD = this.indexElementBD; elementBD< this.elementAfficherBD; elementBD++) {
-    console.log("INDEX BD : "+response[elementBD].article.id);
-    console.log("INDEX BD 1: "+response[elementBD].valide);
-   
-    AllarticlesDB.push(response[elementBD])
-    }
-   this.indexDB = AllarticlesDB;
-  
-
-  });
-}
-*/
-
 
 changePage(){
 	let articlesTempo = [];
@@ -73,7 +54,7 @@ changePage(){
             if (this.indexDB[index].article.id == temp.article.id) { temp.valide = true; }
           }
           articlesTempo.push(temp);
-         // console.log("listItem " + article);
+         
         }
 		this.articles = articlesTempo;	
 }
@@ -91,13 +72,10 @@ else{
   
 }
 for (let elementBD = this.indexElementBD; elementBD< this.elementAfficherBD; elementBD++) {
-  //console.log("INDEX BD : "+response[elementBD].article.id);
-  //console.log("INDEX BD 1: "+response[elementBD].valide);
  
   AllarticlesDBTMP.push(this.AllarticlesDB[elementBD])
   }
  this.indexDB = AllarticlesDBTMP;
- console.log("la taille du INDEX DB : "+this.indexDB.length);
 }
 
 
@@ -119,8 +97,6 @@ listIdexBD(){
 	}
 		 
     for (let elementBD = this.indexElementBD; elementBD< this.elementAfficherBD; elementBD++) {
-    console.log("INDEX BD : "+response[elementBD].article.id);
-    console.log("INDEX BD 1: "+response[elementBD].valide);
    
     AllarticlesDB.push(response[elementBD])
     }
@@ -135,22 +111,30 @@ listIdexBD(){
   listItem() {
     let articlesTempo = [];
 
-    console.log("3 : pageCourante, indexElement,elementAfficher "+this.pageCourante+","+this.indexElement+","+this.elementAfficher);
    
     this.service.getArticles().subscribe(
       (data: Array<any>) => {
       
 	   
-        this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDB = response });
-        for (let article = this.indexElement; article < this.elementAfficher; article++) {
-          let temp = { article: data[article], valide: false };
-          for (let index in this.indexDB) {
-           
-            if (this.indexDB[index].article.id == temp.article.id) { temp.valide = true; }
+        this.service.getArticlesInIndexBD().then(
+          (response: Array<any>) => {
+              this.indexDB = response;
+              console.log(response);
+          
+              for (let article = this.indexElement; article < this.elementAfficher; article++) {
+               
+                let temp = { article: data[article], valide: false };
+         
+                for (let index in this.indexDB) {
+                 
+                  if (this.indexDB[index].article.id == temp.article.id) {  temp.valide = true; }
+                }
+                articlesTempo.push(temp);
+               // console.log("listItem " + article);
+              }
+
           }
-          articlesTempo.push(temp);
-         // console.log("listItem " + article);
-        }
+        );
         this.articles = articlesTempo;
         this.Allarticles = data;
         this.erreur = true;
@@ -195,16 +179,15 @@ listIdexBD(){
 
 
   delete(id) {
-    console.log(" 0 suppression ");
-    console.log(" id "+id);
+   
     let i;
     for (i in this.articles) {
-      console.log(" id 1"+id);
+     
       if (this.articles[i].article.id == id) {
-        console.log(" id 2"+this.articles[i].article.id);
+       
         this.articles[i].valide = false;
         this.service.delete(id);
-        console.log("suppression ");
+     
         i = this.articles.length;
       }
     }
@@ -215,16 +198,15 @@ listIdexBD(){
 
   
   deleteFromIndexBD(id) {
-    console.log(" 0 suppression ");
-    console.log(" id "+id);
+    
     let i;
     for (i in this.indexDB) {
-      console.log(" id 1"+id);
+     
       if (this.indexDB[i].article.id == id) {
       //  console.log(" id 2"+this.articles[i].article.id);
         this.indexDB[i].valide = false;
         this.service.delete(id);
-        console.log("suppression ");
+      
         i = this.indexDB.length;
       }
     }
@@ -244,7 +226,7 @@ listIdexBD(){
      
       if (this.articles[i].article.id == id) {
         this.articles[i].valide = true;
-        console.log("valide ");
+       
         this.service.add(this.articles[i]);
         i = this.articles.length;
       }

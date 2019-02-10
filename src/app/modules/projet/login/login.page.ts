@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'login',
   templateUrl: './login.page.html',
-  //styleUrls: ['./login.page.scss'],
+  styleUrls: ['./login.page.scss'],
   host: { 'class': 'login' },
   providers: [LoginService]
 })
@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     console.log("INIT PAGE1");
-    
+   
   }
 
   login(username: string) {

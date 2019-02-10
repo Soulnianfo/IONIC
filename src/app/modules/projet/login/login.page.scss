@@ -1,0 +1,25 @@
+.login {
+  width: 50%;
+  height: 31%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+  text-align: center;
+  margin-left: 27%;
+  margin-right: 30%;
+  margin-top: 12%;
+  margin-bottom: 30%;
+}
+
+.login > div {
+  display: block;
+  height: 34%;
+}
+.input-username {
+  border-bottom: 1px solid firebrick;
+  border-top: 1px solid firebrick;
+}
+.header {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+}
+.header > h4 {
+  padding-top: 13px;
+}

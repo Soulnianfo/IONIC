@@ -10,10 +10,6 @@ export class LoginService {
 
   }
 
-  getArticles() {
-    return this.httpclient.get("https://jsonplaceholder.typicode.com/posts");
-  }
-
   persistUsername(username) {
     return localStorage.setItem("username", username);
   }
@@ -22,7 +18,7 @@ export class LoginService {
   }
 
   setArticles() {
-    this.storage.set("articles", []);
+    return this.storage.set("articles", []);
   }
 
 }

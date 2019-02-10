@@ -15,25 +15,23 @@ export class ListItemService {
   }
 
  delete(id) {
-   this.storage.get("articles").then((response: Array<any>) => {
-     
+   return this.storage.get("articles").then((response: Array<any>) => {
+
      for (let index in response) {
        if (response[index].article.id == id) {
          response.splice(Number(index), 1);
          this.storage.set("articles", response)
        }
-      }
-      
-
-    })
+     }
+   });
     
   }
 
-  add(article) {
-    this.storage.get("articles").then((response: Array<any>) => {
+ add(article) {
+   return this.storage.get("articles").then((response: Array<any>) => {
      response.push(article);
      this.storage.set("articles", response)
-    })
+   });
   }
 
 
