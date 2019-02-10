@@ -1,116 +1,108 @@
 
 <ion-header >
   <div text-center >
-      <h1 id="titre1"> Bienvenue dans la page des articles </h1>
+      <h1 id="titre1"> Bienvenue sur la page des articles </h1>
      </div>
 </ion-header>
 <ion-content>
 
 
-<div *ngIf="articles!=null; else loadIndexBD">
-    <div class="currentPage" >
+  <div *ngIf="articles!=null; else loadIndexBD">
+    <div class="currentPage">
+
+      <ion-label>Page </ion-label>
+
+      <ion-label> {{pageCourante}} </ion-label>
+
+    </div>
+    <div class="pagination">
+      <div>
+        <ion-label>Pagination </ion-label>
+      </div>
+      <div class="pagination-button" *ngIf="pageCourante >= 2 ">
+        <button color="primary" (click)="before()">< précédente </button>
+      </div>
+      <div class="pagination-button" *ngIf="pageCourante <= 9">
+        <button color="primary" (click)="next()"> suivante > </button>
+      </div>
+    </div>
+    <ion-grid style="margin:auto; width:90%">
+      <table>
+        <tr class="article">
+
+          <td style="font-weight: bold">Titre</td>
+
+          <td style="font-weight: bold">Etat</td>
+
+          <td style="font-weight: bold">Détails</td>
+
+        </tr>
+
+        <tr *ngFor="let article of articles" class="article">
+
+          <td class="article-propriete label">
+
+            <label>{{article.article.title}}</label>
+
+          </td>
+          <td size-sm="2" class="article-propriete add-suppr">
+
+            <span *ngIf="article.valide==true; else ajout">
+              <ion-button color="danger" (click)="delete(article.article.id)" style="width:100px;">Supprimer</ion-button>
+            </span>
+            <ng-template #ajout>
+              <ion-button color="primary" (click)="add(article.article.id)" style="width:100px;">Ajouter</ion-button>
+            </ng-template>
+
+          </td>
+          <td size-sm="2" class="article-propriete detail">
+
+            <ion-button (click)="detail(article.article)" style="width:100px;">Détails</ion-button>
+
+          </td>
+
+        </tr>
+      </table>
+    </ion-grid>
+
+    <div id="Page" class="currentPage">
+
+      <ion-label id="fontPage">Page </ion-label>
+
+      <ion-label id="fontPageCourante"> {{pageCourante}} </ion-label>
+
+    </div>
     
-         <ion-label>Page </ion-label>
-       
-          <ion-label> {{pageCourante}} </ion-label>
-      
-   </div>  
-      <div class="pagination">
-        <div>
-           <ion-label>Pagination </ion-label>
-        </div>
-        <div class="pagination-button" *ngIf="pageCourante >= 2 ">
-              <button color="primary" (click)="before()">< précédente </button>
-        </div>
-        <div class="pagination-button" *ngIf="pageCourante <= 9">
-              <button color="primary" (click)="next()"> suivante > </button>
-        </div>
-      </div>	
-      <ion-grid style="margin:auto; width:90%">
-        <table>
-          <tr class="article">
-           
-                <td style="font-weight: bold">Titre</td>
-             
-                <td style="font-weight: bold">Etat</td>
-           
-                <td style="font-weight: bold">Détails</td>
-             
-          </tr>
+    <div class="pagination">
+      <div>
+        <ion-label>Pagination </ion-label>
+      </div>
+      <div class="pagination-button" *ngIf="pageCourante >= 2 ">
+        <button color="primary" (click)="before()">< précédente </button>
+      </div>
+      <div class="pagination-button" *ngIf="pageCourante <= 9">
+        <button color="primary" (click)="next()"> suivante > </button>
+      </div>
+    </div>
 
-          <tr *ngFor="let article of articles" class="article">
-
-            <td class="article-propriete label">
-
-              <label>{{article.article.title}}</label>
-
-            </td>
-            <td size-sm="2" class="article-propriete add-suppr">
-
-              <span *ngIf="article.valide==true; else ajout">
-                <ion-button color="danger" (click)="delete(article.article.id)" style="width:100px;">Supprimer</ion-button>
-              </span>
-              <ng-template #ajout>
-                <ion-button color="primary" (click)="add(article.article.id)" style="width:100px;">Ajouter</ion-button>
-              </ng-template>
-
-            </td>
-            <td size-sm="2" class="article-propriete detail">
-
-              <ion-button (click)="detail(article.article)" style="width:100px;">Détails</ion-button>
-
-            </td>
-
-          </tr>
-        </table>
-      </ion-grid>
-  
-  <div  id="Page">
-    
-       <ion-label id="fontPage">Page </ion-label>
-       
-        <ion-label id="fontPageCourante"> {{pageCourante}} </ion-label>
-      
- </div>  
-  <div id="pagination" >
-        <div id="MarginAuto">
-           <ion-label id="fontPage">Pagination </ion-label>
-         </div>
-     <div id="IfMargin" *ngIf="pageCourante >= 2 " >
-            <ion-button (click)="before()"> < </ion-button>
-          </div>
-      <div *ngIf="pageCourante <= 9">
-            <ion-button (click)="next()"> > </ion-button>
-          </div>
-     </div>	
-    
-  <div id="pagination" >
-    <div id="MarginAuto">
-          <ion-label id="fontPage">Pagination </ion-label>
-        </div>
-    <div *ngIf="pageCourante >= 2 " id="IfMargin" >
-           <ion-button (click)="before()"> < </ion-button>
-         </div>
-     <div *ngIf="pageCourante <= 9">
-           <ion-button (click)="next()"> > </ion-button>
-     </div>
-    </div>	
-</div>
+   
+  </div>
 
 <ng-template #loadIndexBD>
-      <h4 style=" color: red"> Pas de connexion, vous avez seulement accès aux articles ajoutés.</h4>
-    <div id="connexion" >
-        <h1 id="indexDBH1" > Pas de connexion (les articles sont récuperé depuis l'index DB) </h1>
-    </div>
-    <div id="pagination"  >
+      
+  <div id="connexion">
+    
+    <h4 id="indexDBH1" style=" color: red"> Pas de connexion, vous avez seulement accès aux articles ajoutés.</h4>
+  </div>
+    <div id="pagination" class="pagination" >
       <div id="MarginAuto">
-          <ion-label style="font-weight: bold;">Pagination </ion-label>
+          <ion-label>Pagination </ion-label>
       </div>
-      <div *ngIf="pageCouranteBD > 1 " id="IfMargin" >
-        <ion-button (click)="beforeINDEXBD()"> < </ion-button>
+      <div class="pagination-button" *ngIf="pageCouranteBD > 1 " id="IfMargin" >
+        <button (click)="beforeINDEXBD()"> < précédente </button>
       </div>
-      <div *ngIf="indexDB.length >= 10">
-        <ion-button (click)="nextINDEXBD()"> > </ion-button>
+      <div class="pagination-button" *ngIf=" indexDB!=null && indexDB.length >= 10">
+        <button (click)="nextINDEXBD()"> suivante > </button>
       </div>
   </div>	
   <ion-grid style="margin:auto; width:90%">
@@ -154,15 +146,15 @@
 
   </ion-grid>	
  
-  <div id="pagination"  >
+  <div id="pagination" class="pagination"  >
       <div id="MarginAuto">
         <ion-label id="fontPage" >Pagination </ion-label>
       </div>
-      <div *ngIf="pageCouranteBD > 1 " id="IfMargin" >
-        <ion-button (click)="beforeINDEXBD()"> < </ion-button>
+      <div  class="pagination-button" *ngIf="pageCouranteBD > 1 " id="IfMargin" >
+        <button (click)="beforeINDEXBD()"> < précédente </button>
       </div>
-      <div *ngIf="indexDB.length >= 10">
-        <ion-button (click)="nextINDEXBD()"> > </ion-button>
+      <div class="pagination-button" *ngIf="indexDB!=null && indexDB.length >= 10">
+        <button (click)="nextINDEXBD()"> suivante > </button>
       </div>
   </div>	
  	

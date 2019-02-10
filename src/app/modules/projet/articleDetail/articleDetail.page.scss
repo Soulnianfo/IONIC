@@ -3,13 +3,13 @@ ion-header{
 }
 
 #article {
-    margin:auto;
-    margin-left: 45% ;
-    margin-right: 45% ;
-    margin-top:2%;
-    height: 10%;
-    border: 1.5px solid  black;
-    padding: 10px; 
+  margin: auto;
+  margin-left: 45%;
+  /* margin-right: 45%; */
+  margin-top: 2%;
+  /* height: 10%; */
+  /* border: 1.5px solid black; */
+  padding: 10px;
 }
 
 #articleFont {
@@ -22,20 +22,13 @@ ion-header{
 }
 
 #body {
-    margin:auto;
-    margin-top:4%;
-    margin-left: 5% ; 
-    margin-right: 5% ; 
-    height: 50%; 
-    border: 1.5px solid  black;
-    padding: 10px; 
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 
 #articleTitre {
-    font-weight: bold; 
-    text-align: center; 
-    text-decoration: underline;
+  margin-top: 0px;
 }
 
 #retourBoutton {
