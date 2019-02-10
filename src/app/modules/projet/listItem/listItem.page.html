@@ -10,20 +10,20 @@
   <div *ngIf="articles!=null; else loadIndexBD">
     <div class="currentPage">
 
-      <ion-label>Page </ion-label>
+      <ion-label id="fontPage">Page </ion-label>
 
-      <ion-label> {{pageCourante}} </ion-label>
+      <ion-label id="fontPageCourante"> {{pageCourante}} </ion-label>
 
     </div>
     <div class="pagination">
       <div>
-        <ion-label>Pagination </ion-label>
+        <ion-label id="fontPage">Pagination </ion-label>
       </div>
       <div class="pagination-button" *ngIf="pageCourante >= 2 ">
-        <button color="primary" (click)="before()">< précédente </button>
+        <ion-button color="dark" (click)="before()">< précédente </ion-button>
       </div>
       <div class="pagination-button" *ngIf="pageCourante <= 9">
-        <button color="primary" (click)="next()"> suivante > </button>
+        <ion-button color="dark" (click)="next()"> suivante > </ion-button>
       </div>
     </div>
     <ion-grid style="margin:auto; width:90%">
@@ -75,13 +75,13 @@
     
     <div class="pagination">
       <div>
-        <ion-label>Pagination </ion-label>
+        <ion-label id="fontPage">Pagination </ion-label>
       </div>
       <div class="pagination-button" *ngIf="pageCourante >= 2 ">
-        <button color="primary" (click)="before()">< précédente </button>
+        <ion-button color="dark" (click)="before()">< précédente </ion-button>
       </div>
       <div class="pagination-button" *ngIf="pageCourante <= 9">
-        <button color="primary" (click)="next()"> suivante > </button>
+        <ion-button color="dark" (click)="next()"> suivante > </ion-button>
       </div>
     </div>
 
@@ -96,13 +96,13 @@
   </div>
     <div id="pagination" class="pagination" >
       <div id="MarginAuto">
-          <ion-label>Pagination </ion-label>
+          <ion-label id="fontPage">Pagination </ion-label>
       </div>
       <div class="pagination-button" *ngIf="pageCouranteBD > 1 " id="IfMargin" >
-        <button (click)="beforeINDEXBD()"> < précédente </button>
+        <ion-button color="dark" (click)="beforeINDEXBD()"> < précédente </ion-button>
       </div>
       <div class="pagination-button" *ngIf=" indexDB!=null && indexDB.length >= 10">
-        <button (click)="nextINDEXBD()"> suivante > </button>
+        <ion-button color="dark" (click)="nextINDEXBD()"> suivante > </ion-button>
       </div>
   </div>	
   <ion-grid style="margin:auto; width:90%">
@@ -127,12 +127,10 @@
         </td>
         <td size-sm="2" class="article-propriete add-suppr">
 
-          <span *ngIf="article.valide==true; else ajout">
-            <ion-button color="danger" (click)="delete(article.article.id)" style="width:100px;">Supprimer</ion-button>
+          <span *ngIf="article.valide==true">
+            <ion-button color="danger" (click)="deleteFromIndexBD(article.article.id)" style="width:100px;">Supprimer</ion-button>
           </span>
-          <ng-template #ajout>
-            <ion-button color="primary" (click)="add(article.article.id)" style="width:100px;">Ajouter</ion-button>
-          </ng-template>
+        
 
         </td>
         <td size-sm="2" class="article-propriete detail">
@@ -151,10 +149,10 @@
         <ion-label id="fontPage" >Pagination </ion-label>
       </div>
       <div  class="pagination-button" *ngIf="pageCouranteBD > 1 " id="IfMargin" >
-        <button (click)="beforeINDEXBD()"> < précédente </button>
+        <ion-button color="dark" (click)="beforeINDEXBD()"> < précédente </ion-button>
       </div>
       <div class="pagination-button" *ngIf="indexDB!=null && indexDB.length >= 10">
-        <button (click)="nextINDEXBD()"> suivante > </button>
+        <ion-button color="dark" (click)="nextINDEXBD()"> suivante > </ion-button>
       </div>
   </div>	
  	
