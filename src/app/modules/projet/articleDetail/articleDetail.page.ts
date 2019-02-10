@@ -1,4 +1,5 @@
 
+
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ListItemPage } from "../listItem/listItem.page";
@@ -7,6 +8,7 @@ import { ArticleDetailService } from "./articleDetail.service";
 @Component({
   selector: 'articleDetail',
   templateUrl: './articleDetail.page.html',
+  styleUrls: ['./articleDetail.page.scss'],
   host: { 'class': 'articleDetail' },
   providers: [ArticleDetailService]
 })

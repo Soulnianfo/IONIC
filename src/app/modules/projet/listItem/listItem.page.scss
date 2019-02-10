@@ -1,3 +1,4 @@
+
 .page-listItem-head{
   background-color: blue ;
 }
@@ -35,3 +36,67 @@
 }
 
 
+ion-header{
+     background-color: rgb(143, 8, 8);
+}
+
+ion-grid {
+    margin:auto;
+     width:90%;
+}
+
+#titre1 {
+    color:white;
+}
+
+#indexDBH1 {
+    color : red;
+}
+#Page {
+    margin:auto;
+    margin-left: 45% ;
+    margin-right: 45% ;
+    margin-top:2%;
+    height: 10%;
+    border: 1.5px solid  black;
+    padding: 10px;  
+}
+
+#fontPage {
+    font-weight: bold;
+}
+
+#fontPageCourante {
+    font-weight: bold;
+    margin-left: 3% ;
+}
+
+#pagination {
+    margin:auto;
+     margin-top: 4% ;
+     margin-bottom: 5% ;
+     margin-left: 35% ; 
+     margin-right: 35% ;
+    border: 1.5px solid  black;
+    padding: 10px;
+     display: flex;
+}
+
+#MarginAuto {
+    margin:auto;
+}
+
+#IfMargin {
+     margin-left: 5%;
+}
+
+#connexion {
+    margin:auto; 
+    margin-top: 2% ;
+    margin-bottom: 2% ;
+    width:55% ; 
+    border: 1.5px solid  black; 
+    padding: 4px; 
+    display: flex;
+}
+>>>>>>> b6a57c9c81b7a4251358ac6a829fb87a8e8d4cce

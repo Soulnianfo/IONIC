@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 
 const defaultsRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  
   {
     path: 'login',
     loadChildren: '../modules/projet/login/login.page.module#LoginPageModule'

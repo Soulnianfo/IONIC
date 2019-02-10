@@ -85,9 +85,13 @@ listIdexBD(){
   let AllarticlesDB =[];
  
   this.service.getArticlesInIndexBD().then((response: Array<any>) => { this.indexDBTMP = response;
-	this.size = this.indexDBTMP.length;
+  this.size = this.indexDBTMP.length;
+  console.log("la taille de index bd "+this.size);
+  console.log("la taille de elementAfficherBD "+this.elementAfficherBD);
+
     if(this.size < this.elementAfficherBD)
 	{
+    console.log("");
 		this.elementAfficherBD = this.size;
 		this.pageSuivanteBD =1;
 	}
@@ -111,7 +115,7 @@ listIdexBD(){
   listItem() {
     let articlesTempo = [];
 
-   
+
     this.service.getArticles().subscribe(
       (data: Array<any>) => {
       
@@ -201,14 +205,16 @@ listIdexBD(){
     
     let i;
     for (i in this.indexDB) {
-     
+
       if (this.indexDB[i].article.id == id) {
       //  console.log(" id 2"+this.articles[i].article.id);
         this.indexDB[i].valide = false;
-        this.service.delete(id);
-      
+       this.service.delete(id);
         i = this.indexDB.length;
       }
+      console.log(" 0 pageCouranteDB "+this.pageCourante);
+      console.log(" 0 pageSuivantDB "+this.pageSuivanteBD);
+
     }
 
     this.service.getArticlesInIndexBD().then((response: Array<any>) => {
@@ -218,6 +224,9 @@ listIdexBD(){
      // this.changePageDB();
      this.listIdexBD();
     this.router.navigateByUrl("listItem");
+
+    console.log(" 1 pageCouranteDB "+this.pageCourante);
+    console.log(" 1 pageSuivantDB "+this.pageSuivanteBD);
   }
 
   add(id) {
@@ -238,8 +247,12 @@ listIdexBD(){
   detail(article) {
 
     this.articleService.setArticle(article);
-    this.router.navigateByUrl("articleDetail");
+    this.goToPageDetails();
     
   }
   
+
+  goToPageDetails(){
+    this.router.navigateByUrl("articleDetail");
+  }
 }
